@@ -1,0 +1,22 @@
+{
+  "name": "pbook",
+  "version": "0.0.0",
+  "authors": [
+    "Trambitskiy Yura <tr.yura@yahoo.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap-sass": "~3.0.2",
+    "boilerplate": "*",
+    "jquery": "~2.1.2",
+    "normalize-css": "~3.0.2",
+    "modernizr": "~2.8.3"
+  }
+}

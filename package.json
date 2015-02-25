@@ -1,0 +1,11 @@
+{
+  "name": "mytemplate",
+  "version": "0.0.0",
+  "author": "Yury Trambitskiy",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-sass": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-autoprefixer": "~0.7.2"
+  }
+}
