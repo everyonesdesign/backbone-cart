@@ -78,15 +78,21 @@
   &-title {
     font-size: 1.2em;
     font-weight: bold;
+    color: $accented;
   }
   &-info {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   &-quantity {
     display: inline-block;
     margin-left: 10px;
     font-size: 13px;
     color: $dimmed;
+  }
+  &-price {
+    margin: 6px 0;
+    font-size: 1.1em;
+    font-weight: bold;
   }
 
 }
@@ -124,4 +130,57 @@
     background: -ms-linear-gradient(top,  $accented 0%,lighten($accented, 5%) 100%);
     background: linear-gradient(to bottom,  $accented 0%,lighten($accented, 5%) 100%);
   }
+  &--disabled {
+    background: #999 !important;
+    text-shadow: none;
+    cursor: default;
+  }
+}
+
+.cart {
+
+  &-item {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  &-title,
+  &-amount,
+  &-price,
+  &-remove {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+
+  &-title {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  &-amount {
+  }
+
+  &-price {
+  }
+
+  &-remove {
+    a {
+      color: #ad2424;
+    }
+  }
+
+  &-summary {
+    float: right;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    font-size: 1.1em;
+    .button {
+      margin-top: 10px;
+    }
+  }
+
 }
