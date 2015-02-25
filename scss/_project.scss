@@ -1,3 +1,127 @@
+@import "variables";
 /*
 * PROJECT LAYER
 */
+
+.header {
+
+  line-height: 50px;
+  color: #fff;
+  background: lighten($accented, 5%);
+  a {
+    color: #fff;
+  }
+  &-logo {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+  .menu {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 100px;
+    line-height: 1.5;
+  }
+
+}
+
+.menu {
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  &-item {
+    display: inline-block;
+    position: relative;
+    margin: 0 20px;
+    font-size: 1.1em;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s opacity;
+    }
+    a {
+      text-decoration: none;
+    }
+    &:hover:before,
+    &--active:before {
+      bottom:0;
+      opacity: 1;
+    }
+  }
+
+}
+
+.goods {
+
+  &-item {
+    padding: 10px 0 10px 130px;
+    border-top: 1px solid #eee;
+    &:first-child {
+      border-top: none;
+    }
+  }
+  &-image {
+    float: left;
+    height: 120px;
+    width: 120px;
+    margin-left: -130px;
+  }
+  &-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  &-info {
+    margin-top: 20px;
+  }
+  &-quantity {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 13px;
+    color: $dimmed;
+  }
+
+}
+
+.button {
+  display: inline-block;
+  border: none;
+  outline: none;
+  padding: 4px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 1px 1px rgba(0,0,0,.15);
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.15);
+  background: $accented;
+  background: -moz-linear-gradient(top,  lighten($accented, 10%) 0%, $accented 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten($accented, 10%)), color-stop(100%,$accented));
+  background: -webkit-linear-gradient(top,  lighten($accented, 10%) 0%,$accented 100%);
+  background: -o-linear-gradient(top,  lighten($accented, 10%) 0%,$accented 100%);
+  background: -ms-linear-gradient(top,  lighten($accented, 10%) 0%,$accented 100%);
+  background: linear-gradient(to bottom,  lighten($accented, 10%) 0%,$accented 100%);
+  &:hover {
+    background: -moz-linear-gradient(top,  lighten($accented, 13%) 0%, $accented 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten($accented, 13%)), color-stop(100%,$accented));
+    background: -webkit-linear-gradient(top,  lighten($accented, 13%) 0%,$accented 100%);
+    background: -o-linear-gradient(top,  lighten($accented, 13%) 0%,$accented 100%);
+    background: -ms-linear-gradient(top,  lighten($accented, 13%) 0%,$accented 100%);
+    background: linear-gradient(to bottom,  lighten($accented, 13%) 0%,$accented 100%);
+  }
+  &:active {
+    background: -moz-linear-gradient(top,  $accented 0%, lighten($accented, 5%) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$accented), color-stop(100%,lighten($accented, 5%)));
+    background: -webkit-linear-gradient(top,  $accented 0%,lighten($accented, 5%) 100%);
+    background: -o-linear-gradient(top,  $accented 0%,lighten($accented, 5%) 100%);
+    background: -ms-linear-gradient(top,  $accented 0%,lighten($accented, 5%) 100%);
+    background: linear-gradient(to bottom,  $accented 0%,lighten($accented, 5%) 100%);
+  }
+}

@@ -1,3 +1,12 @@
+/*
+*
+* THIS FILE USES MCSS STRUCTURE
+* (http://operatino.github.io/MCSS/)
+*
+*/
+/*
+* FOUNDATION LAYER
+*/
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -391,6 +400,142 @@ table {
 td,
 th {
   padding: 0;
+}
+
+body {
+  color: #333;
+  font: 15px/1.3 "PT Serif", serif;
+}
+
+a {
+  color: #328a34;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/*
+* BASE LAYER
+*/
+.container {
+  width: 800px;
+  margin: auto;
+}
+
+/*
+* PROJECT LAYER
+*/
+.header {
+  line-height: 50px;
+  color: #fff;
+  background: #399d3b;
+}
+.header a {
+  color: #fff;
+}
+.header-logo {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+.header .menu {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 100px;
+  line-height: 1.5;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-item {
+  display: inline-block;
+  position: relative;
+  margin: 0 20px;
+  font-size: 1.1em;
+}
+.menu-item:before {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  -o-transition: .2s opacity;
+  transition: .2s opacity;
+}
+.menu-item a {
+  text-decoration: none;
+}
+.menu-item:hover:before, .menu-item--active:before {
+  bottom: 0;
+  opacity: 1;
+}
+
+.goods-item {
+  padding: 10px 0 10px 130px;
+  border-top: 1px solid #eee;
+}
+.goods-item:first-child {
+  border-top: none;
+}
+.goods-image {
+  float: left;
+  height: 120px;
+  width: 120px;
+  margin-left: -130px;
+}
+.goods-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.goods-info {
+  margin-top: 20px;
+}
+.goods-quantity {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 13px;
+  color: #777;
+}
+
+.button {
+  display: inline-block;
+  border: none;
+  outline: none;
+  padding: 4px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  background: #328a34;
+  background: -o-linear-gradient(top, #40af42 0%, #328a34 100%);
+  background: linear-gradient(to bottom, #40af42 0%, #328a34 100%);
+}
+.button:hover {
+  background: -o-linear-gradient(top, #44bb46 0%, #328a34 100%);
+  background: linear-gradient(to bottom, #44bb46 0%, #328a34 100%);
+}
+.button:active {
+  background: -o-linear-gradient(top, #328a34 0%, #399d3b 100%);
+  background: linear-gradient(to bottom, #328a34 0%, #399d3b 100%);
+}
+
+/*
+* COSMETIC LAYER
+*/
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /*# sourceMappingURL=styles.css.map */
