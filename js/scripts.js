@@ -119,6 +119,9 @@ var ProductView = Backbone.View.extend({
 
         // и добавляем товар в список товаров в корзине, если его там нет
         cart.set(this.model, {remove: false});
+
+        // показываем соответствующее сообщение
+        addMessage("Товар добавлен в корзину!", "success");
     }
 });
 
@@ -158,18 +161,31 @@ var ProductsListView = Backbone.View.extend({
 var CartItemView = ProductView.extend({
     el: "<div class='cart-item'>",
     template: _.template($("#cart-item-template").html()),
-    // На клик по элементу .js-remove удаляем товар из корзины
+    // Обработчики событий
     events: {
-        "click .js-remove": "remove"
+        "click .js-remove": "remove",
+        "click .js-plus": "plus",
+        "click .js-minus": "minus"
     },
     remove: function() {
 
-        // Для данной модели устанавливаем количество в корзине равным 0,
+        // Удаление: для данной модели устанавливаем количество в корзине равным 0,
         this.model.set("inCart", 0);
 
         // и удаляем эту модель из корзины
         cart.remove(this.model);
+    },
+
+    // Кнопки увеличения/уменьшения количества товаров в корзине
+    plus: function() {
+        this.model.set("inCart", this.model.get("inCart")+1);
+    },
+    minus: function() {
+        var amount = this.model.get("inCart");
+        if (amount > 1) this.model.set("inCart", amount-1);
+        else this.remove()
     }
+
 });
 
 //Отображение списка товаров в корзине

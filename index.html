@@ -59,7 +59,11 @@
 
         <script type="text/template" id="cart-item-template">
             <div class="cart-title"><%= title %></div>
-            <div class="cart-amount"><%= inCart %> шт.</div>
+            <div class="cart-amount">
+                <div class="button button--mini <%= inStore - inCart ? 'js-plus' : 'button--disabled' %>">+</div>
+                <%= inCart %> шт.
+                <div class="button button--mini js-minus">-</div>
+            </div>
             <div class="cart-price"><%= inCart * price %> руб.</div>
             <div class="cart-remove"><a class="js-remove" href="javascript:;">Удалить</a></div>
         </script>
