@@ -6,7 +6,7 @@ Backbone.ajax = function(request) {
     var deferred = $.Deferred();
 
     //Запрос на сохранение корзины
-    if (request.url == "cart") {
+    if (request.url == "/cart") {
 
         deferred.done(function() {
 
@@ -22,7 +22,7 @@ Backbone.ajax = function(request) {
         });
 
     //Запрос на получение списка товаров
-    } else if (request.url == "products") {
+    } else if (request.url == "/products") {
 
         deferred.done(function() {
             //Сами товары
