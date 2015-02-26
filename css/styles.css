@@ -230,7 +230,7 @@ a:hover {
 .header-logo {
   display: inline-block;
   vertical-align: middle;
-  font-size: 1.8em;
+  font-size: 27px;
   font-weight: bold;
 }
 .header .menu {
@@ -248,13 +248,13 @@ a:hover {
 .menu-item {
   display: inline-block;
   margin: 0 20px;
-  font-size: 1.1em;
 }
 .menu-link {
   display: block;
   position: relative;
   text-decoration: none;
   cursor: pointer;
+  font-size: 16px;
 }
 .menu-link:before {
   content: "";
@@ -288,7 +288,7 @@ a:hover {
   margin-left: -130px;
 }
 .goods-title {
-  font-size: 1.2em;
+  font-size: 18px;
   font-weight: bold;
   color: #2d6ac3;
 }
@@ -303,7 +303,7 @@ a:hover {
 }
 .goods-price {
   margin: 6px 0;
-  font-size: 1.1em;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -354,7 +354,7 @@ a:hover {
   border-top: 1px solid #eee;
 }
 .cart-title {
-  font-size: 1.1em;
+  font-size: 16px;
   font-weight: bold;
 }
 .cart-remove a {
@@ -364,10 +364,31 @@ a:hover {
   float: right;
   padding: 10px;
   border-top: 1px solid #eee;
-  font-size: 1.1em;
+  font-size: 16px;
 }
 .cart-summary .button {
   margin-top: 10px;
+}
+
+.messages {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.messages-item {
+  display: block;
+  width: 200px;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 4px solid #2d6ac3;
+  font-size: 13px;
+}
+.messages-item--success {
+  border-left-color: #56C36E;
+}
+.messages-item--error {
+  border-left-color: #C3444B;
 }
 
 /*

@@ -19,7 +19,7 @@
   &-logo {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.8em;
+    font-size: 27px;
     font-weight: bold;
   }
   .menu {
@@ -39,13 +39,13 @@
   &-item {
     display: inline-block;
     margin: 0 20px;
-    font-size: 1.1em;
   }
   &-link {
     display: block;
     position: relative;
     text-decoration: none;
     cursor: pointer;
+    font-size: 16px;
     &:before {
       content: "";
       position: absolute;
@@ -83,7 +83,7 @@
     margin-left: -130px;
   }
   &-title {
-    font-size: 1.2em;
+    font-size: 18px;
     font-weight: bold;
     color: $accented;
   }
@@ -98,7 +98,7 @@
   }
   &-price {
     margin: 6px 0;
-    font-size: 1.1em;
+    font-size: 16px;
     font-weight: bold;
   }
 
@@ -170,7 +170,7 @@
   }
 
   &-title {
-    font-size: 1.1em;
+    font-size: 16px;
     font-weight: bold;
   }
 
@@ -190,9 +190,33 @@
     float: right;
     padding: 10px;
     border-top: 1px solid #eee;
-    font-size: 1.1em;
+    font-size: 16px;
     .button {
       margin-top: 10px;
+    }
+  }
+
+}
+
+.messages {
+
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  &-item {
+    display: block;
+    width: 200px;
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid $accented;
+    font-size: 13px;
+    &--success {
+      border-left-color: #56C36E;
+    }
+    &--error {
+      border-left-color: #C3444B;
     }
   }
 

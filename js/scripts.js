@@ -25,6 +25,7 @@ var CartList = Backbone.Collection.extend({
             });
         }, this);
         this.sync("read", null, {local: true});
+        this.url = "cartItems"
     },
     sync: function(method, collection, options) {
         options = options || {};
@@ -114,6 +115,19 @@ var CartListView = Backbone.View.extend({
     initialize: function() {
         this.render();
         this.collection.on("add remove change", this.render, this);
+    },
+    events: {
+        "click .js-save": "save"
+    },
+    save: function() {
+        Backbone.sync("update", this.collection, {
+            success: function() {
+                addMessage("Ваш заказ сохранен!", "success")
+            },
+            error: function() {
+                addMessage("Ошибка при сохранении заказа, попробуйте еще раз", "error")
+            }
+        });
     }
 });
 
@@ -207,5 +221,19 @@ var cartView = new CartListView({
 
 var navigation = new Navigation();
 Backbone.history.start();
+
+function addMessage(text, status) {
+    var $messages = $("#messages"),
+        $message = $("<div class='messages-item'>" + text + "</div>");
+    if (status) {
+        $message.addClass("messages-item--" + status);
+    }
+    $messages.append($message);
+    setTimeout(function() {
+        $message.fadeOut(400, function() {
+            $message.remove();
+        });
+    }, 3000);
+}
 
 
