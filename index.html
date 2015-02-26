@@ -46,32 +46,24 @@
     <div class="container">
         <h1>Корзина</h1>
 
-        <div class="cart cf">
-
-            <div class="cart-list">
-
-                <div class="cart-item">
-                    <div class="cart-title">Заголовок</div>
-                    <div class="cart-amount">4 шт.</div>
-                    <div class="cart-price">452 руб.</div>
-                    <div class="cart-remove"><a class="js-remove" href="#">Удалить</a></div>
+        <script type="text/template" id="cart-template">
+            <div class="cart cf" id="cart">
+                <div class="cart-list"></div>
+                <div class="cart-summary">
+                    Итого: <span class="js-sum"></span> руб. <br/>
+                    <div class="button">Оформить заказ</div>
                 </div>
-
-                <div class="cart-item">
-                    <div class="cart-title">Заголовок</div>
-                    <div class="cart-amount">4 шт.</div>
-                    <div class="cart-price">452 руб.</div>
-                    <div class="cart-remove"><a class="js-remove" href="#">Удалить</a></div>
-                </div>
-
             </div>
+        </script>
 
-            <div class="cart-summary">
-                Итого: 1502 руб. <br/>
-                <div class="button">Оформить заказ</div>
-            </div>
+        <script type="text/template" id="cart-item-template">
+            <div class="cart-title"><%= title %></div>
+            <div class="cart-amount"><%= inCart %> шт.</div>
+            <div class="cart-price"><%= inCart * price %> руб.</div>
+            <div class="cart-remove"><a class="js-remove" href="#">Удалить</a></div>
+        </script>
 
-        </div>
+        <div class="cart cf" id="cart"></div>
 
     </div>
 </div>
