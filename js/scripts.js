@@ -117,6 +117,38 @@ var CartListView = Backbone.View.extend({
     }
 });
 
+//ROUTER
+
+var $links = $(".menu-link");
+$links.click(function(e) {
+    e.preventDefault();
+    navigation.navigate($(this).attr("href"), {trigger: true});
+});
+
+var Navigation = Backbone.Router.extend({
+
+    routes: {
+        "": "shop",
+        "cart": "cart"
+    },
+    shop: function() {
+        $(".mode").stop().hide().filter(".mode--shop").fadeIn(200);
+        this.updateMenu("");
+    },
+    cart: function() {
+        $(".mode").stop().hide().filter(".mode--cart").fadeIn(200);
+        this.updateMenu("cart");
+    },
+
+    updateMenu: function(href) {
+        $links
+            .removeClass("menu-link--active")
+            .filter("[href='" + href + "']")
+            .addClass("menu-link--active");
+    }
+
+});
+
 
 // INIT
 
@@ -173,5 +205,7 @@ var cartView = new CartListView({
     collection: cart
 });
 
+var navigation = new Navigation();
+Backbone.history.start();
 
 

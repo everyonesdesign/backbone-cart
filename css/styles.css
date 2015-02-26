@@ -454,11 +454,16 @@ a:hover {
 }
 .menu-item {
   display: inline-block;
-  position: relative;
   margin: 0 20px;
   font-size: 1.1em;
 }
-.menu-item:before {
+.menu-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu-link:before {
   content: "";
   position: absolute;
   bottom: 2px;
@@ -471,10 +476,7 @@ a:hover {
   -o-transition: .2s opacity;
   transition: .2s opacity;
 }
-.menu-item a {
-  text-decoration: none;
-}
-.menu-item:hover:before, .menu-item--active:before {
+.menu-link:hover:before, .menu-link--active:before {
   bottom: 0;
   opacity: 1;
 }

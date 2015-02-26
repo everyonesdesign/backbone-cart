@@ -33,9 +33,14 @@
   padding: 0;
   &-item {
     display: inline-block;
-    position: relative;
     margin: 0 20px;
     font-size: 1.1em;
+  }
+  &-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
     &:before {
       content: "";
       position: absolute;
@@ -47,9 +52,6 @@
       opacity: 0;
       pointer-events: none;
       transition: .2s opacity;
-    }
-    a {
-      text-decoration: none;
     }
     &:hover:before,
     &--active:before {
