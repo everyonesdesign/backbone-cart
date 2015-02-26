@@ -15,7 +15,31 @@ var ProductsList = Backbone.Collection.extend({
 });
 
 var CartList = Backbone.Collection.extend({
-    model: Product
+    model: Product,
+    initialize: function() {
+        this.sync("read");
+        this.on("add remove change", function() {
+           this.sync("update", this.models);
+        }, this);
+    },
+    sync: function(method, collection, options) {
+        options = options || {};
+        if (options.local) {
+            if (method=="create" || method=="update") {
+                localStorage.setItem( "cart", JSON.stringify(collection) );
+            } else if (method=="read") {
+                this.set(JSON.parse( localStorage.getItem("cart") ) || null);
+            } else if (method=="delete") {
+                localStorage.setItem("cart", null);
+            }
+            items.set(this.models, {
+                add: false,
+                remove: false
+            });
+        } else {
+            Backbone.sync(method, collection, options);
+        }
+    }
 });
 
 // VIEWS
@@ -29,6 +53,7 @@ var ProductView = Backbone.View.extend({
     },
     initialize: function() {
         this.render();
+        this.model.on("add remove change", this.render, this);
     },
     events: {
         "click .js-buy": "addToCart"
@@ -36,6 +61,8 @@ var ProductView = Backbone.View.extend({
     addToCart: function() {
         this.model.set("inCart", this.model.get("inCart")+1);
         this.render();
+        //add it also to cart collection
+        cart.set(this.model, {remove: false});
     }
 });
 
@@ -58,6 +85,7 @@ var ProductsListView = Backbone.View.extend({
 
 var items = new ProductsList([
     {
+        id: 1,
         title: "Часы Salmon",
         description: "Модные и элегантные часы",
         image: "1.jpg",
@@ -65,6 +93,7 @@ var items = new ProductsList([
         inStore: 5
     },
     {
+        id: 2,
         title: "Часы Albatros",
         description: "Современный выбор",
         image: "2.jpg",
@@ -72,6 +101,7 @@ var items = new ProductsList([
         inStore: 4
     },
     {
+        id: 3,
         title: "Часы Flamingo",
         description: "Последняя модель",
         image: "3.jpg",
@@ -79,6 +109,7 @@ var items = new ProductsList([
         inStore: 8
     },
     {
+        id: 4,
         title: "Часы Panda",
         description: "Для тех кто ценит деньги и стиль",
         image: "4.jpg",
@@ -86,6 +117,7 @@ var items = new ProductsList([
         inStore: 12
     },
     {
+        id: 5,
         title: "Часы Meercat",
         description: "Лучшие из лучших",
         image: "5.jpg",
@@ -97,6 +129,8 @@ var items = new ProductsList([
 var itemsView = new ProductsListView({
     collection: items
 });
+
+var cart = new CartList();
 
 
 
