@@ -1,12 +1,16 @@
-//Function imitating ajax. "Server" randomly chooses between success or error
+//Имитируем ответы сервера на аякс
 
 Backbone.ajax = function(request) {
 
+    //Имитируем задержку на сервере
     var deferred = $.Deferred();
 
+    //Запрос на сохранение корзины
     if (request.url == "cart") {
 
         deferred.done(function() {
+
+            //Случайным образом решаем, удачно ли сохранены данные
             if (Math.random() > .5) {
                 console.log("success");
                 if (request && request.success) request.success();
@@ -14,11 +18,14 @@ Backbone.ajax = function(request) {
                 console.log("error");
                 if (request && request.error) request.error();
             }
+
         });
 
+    //Запрос на получение списка товаров
     } else if (request.url == "products") {
 
         deferred.done(function() {
+            //Сами товары
             var items = [
                 {
                     id: 1,
@@ -61,14 +68,15 @@ Backbone.ajax = function(request) {
                     inStore: 2
                 }
             ];
+            //Вызываем callback
             if (request.success) request.success(items);
         });
 
-
-
     }
 
+    //Задержка варьируется от 100 до 700 мс
     setTimeout(deferred.resolve, Math.random()*600+100);
+
     return deferred.promise();
 
 };
