@@ -84,7 +84,11 @@ var CartItemView = ProductView.extend({
     el: "<div class='cart-item'>",
     template: _.template($("#cart-item-template").html()),
     events: {
-
+        "click .js-remove": "remove"
+    },
+    remove: function() {
+        this.model.set("inCart", 0);
+        cart.remove(this.model);
     }
 });
 
