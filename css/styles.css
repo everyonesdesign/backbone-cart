@@ -344,6 +344,10 @@ a:hover {
   text-shadow: none;
   cursor: default;
 }
+.button--mini {
+  min-width: 9px;
+  padding: 0 6px;
+}
 
 .cart-item {
   display: table;

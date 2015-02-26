@@ -148,6 +148,10 @@
     text-shadow: none;
     cursor: default;
   }
+  &--mini {
+    min-width: 9px;
+    padding:0 6px;
+  }
 }
 
 .cart {
