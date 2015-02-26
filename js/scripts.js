@@ -7,35 +7,47 @@ var Product = Backbone.Model.extend({
     }
 });
 
-
 // COLLECTIONS
 
 var ProductsList = Backbone.Collection.extend({
-    model: Product
+    model: Product,
+    initialize: function() {
+        this.url = "products";
+        this.fetch({
+            success: function(collection, response) {
+                collection.set(response);
+                collection.trigger("init");
+            }
+        });
+    }
 });
 
 var CartList = Backbone.Collection.extend({
     model: Product,
     initialize: function() {
-        this.on("add remove change", function() {
-            this.sync("update", this.models, {local: true});
+        var updateProductsList = function() {
             items.set(this.models, {
                 add: false,
                 remove: false
             });
+        }.bind(this);
+        items.on("init", updateProductsList);
+        this.on("add remove change", function() {
+            this.sync("update", this.models, {local: true});
+            updateProductsList()
         }, this);
         this.sync("read", null, {local: true});
-        this.url = "cartItems"
+        this.url = "cart"
     },
     sync: function(method, collection, options) {
         options = options || {};
         if (options.local) {
-            if (method=="create" || method=="update") {
+            if (method=="delete" || (collection && !collection.length)) {
+                localStorage.setItem("cart", null);
+            } else if (method=="create" || method=="update") {
                 localStorage.setItem( "cart", JSON.stringify(collection) );
             } else if (method=="read") {
                 this.set(JSON.parse( localStorage.getItem("cart") ) || null);
-            } else if (method=="delete") {
-                localStorage.setItem("cart", null);
             }
         } else {
             Backbone.sync(method, collection, options);
@@ -70,14 +82,22 @@ var ProductView = Backbone.View.extend({
 var ProductsListView = Backbone.View.extend({
     el: $("#goods"),
     render: function() {
-        this.$el.empty();
-        this.collection.each(function(product) {
-            var item = new ProductView({model: product});
-            this.$el.append(item.el);
-        }, this);
+        if (this.collection.length) {
+            this.$el.empty();
+            this.collection.each(function(product) {
+                var item = new ProductView({model: product});
+                this.$el.append(item.el);
+            }, this);
+        } else {
+            this.$el.html("<p>Загрузка...</p>")
+        }
     },
     initialize: function() {
         this.render();
+        this.collection.on("add remove change", this.render, this);
+        this.collection.on("init", function() {
+            this.$el.hide().fadeIn(200);
+        }, this);
     }
 });
 
@@ -143,7 +163,8 @@ var Navigation = Backbone.Router.extend({
 
     routes: {
         "": "shop",
-        "cart": "cart"
+        "cart": "cart",
+        "about": "about"
     },
     shop: function() {
         $(".mode").stop().hide().filter(".mode--shop").fadeIn(200);
@@ -152,6 +173,10 @@ var Navigation = Backbone.Router.extend({
     cart: function() {
         $(".mode").stop().hide().filter(".mode--cart").fadeIn(200);
         this.updateMenu("cart");
+    },
+    about: function() {
+        $(".mode").stop().hide().filter(".mode--about").fadeIn(200);
+        this.updateMenu("about");
     },
 
     updateMenu: function(href) {
@@ -166,56 +191,15 @@ var Navigation = Backbone.Router.extend({
 
 // INIT
 
-var items = new ProductsList([
-    {
-        id: 1,
-        title: "Часы Salmon",
-        description: "Модные и элегантные часы",
-        image: "1.jpg",
-        price: 1500,
-        inStore: 5
-    },
-    {
-        id: 2,
-        title: "Часы Albatros",
-        description: "Современный выбор",
-        image: "2.jpg",
-        price: 2250,
-        inStore: 4
-    },
-    {
-        id: 3,
-        title: "Часы Flamingo",
-        description: "Последняя модель",
-        image: "3.jpg",
-        price: 1800,
-        inStore: 8
-    },
-    {
-        id: 4,
-        title: "Часы Panda",
-        description: "Для тех кто ценит деньги и стиль",
-        image: "4.jpg",
-        price: 1000,
-        inStore: 12
-    },
-    {
-        id: 5,
-        title: "Часы Meercat",
-        description: "Лучшие из лучших",
-        image: "5.jpg",
-        price: 3200,
-        inStore: 2
-    }
-]);
-
-var itemsView = new ProductsListView({
-    collection: items
-});
+var items = new ProductsList();
 
 var cart = new CartList();
 
-var cartView = new CartListView({
+new ProductsListView({
+    collection: items
+});
+
+new CartListView({
     collection: cart
 });
 
