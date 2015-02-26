@@ -527,6 +527,12 @@ a:hover {
   background: #2d6ac3;
   background: -o-linear-gradient(top, #4d85d6 0%, #2d6ac3 100%);
   background: linear-gradient(to bottom, #4d85d6 0%, #2d6ac3 100%);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .button:hover {
   background: -o-linear-gradient(top, #598dd9 0%, #2d6ac3 100%);
